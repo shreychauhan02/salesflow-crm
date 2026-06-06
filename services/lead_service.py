@@ -286,7 +286,7 @@ def convert_lead_to_opportunity(
     if lead.status != LeadStatus.QUALIFIED:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Only 'Qualified' leads can be converted. Current status: '{lead.status.value}'"
+            detail=f"Only 'Qualified' leads can be converted. Current status: '{lead.status}'"
         )
 
     # Step 3: Determine approval status based on deal value
@@ -322,9 +322,9 @@ def convert_lead_to_opportunity(
     return {
         "message": "Lead successfully converted to opportunity!",
         "lead_id": lead.id,
-        "lead_status": lead.status.value,
+        "lead_status": str(lead.status),
         "opportunity_id": new_opportunity.id,
         "opportunity_name": new_opportunity.opportunity_name,
         "deal_value": new_opportunity.deal_value,
-        "approval_status": new_opportunity.approval_status.value,
+        "approval_status": str(new_opportunity.approval_status),
     }

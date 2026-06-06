@@ -14,12 +14,7 @@
 # 3. We store the hash in the database
 # 4. During login, we hash the input and compare with stored hash
 
-from passlib.context import CryptContext
-
-# Create a password hashing context using bcrypt
-# - schemes=["bcrypt"]: Use the bcrypt algorithm
-# - deprecated="auto": Automatically handle old hash formats
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+import bcrypt
 
 
 def hash_password(password: str) -> str:
@@ -31,12 +26,11 @@ def hash_password(password: str) -> str:
         
     Returns:
         A bcrypt hash string (e.g., "$2b$12$LJ3m4...")
-        
-    Example:
-        hashed = hash_password("mypassword123")
-        # Returns: "$2b$12$randomsaltandhashhere..."
     """
-    return pwd_context.hash(password)
+    password_bytes = password.encode("utf-8")
+    salt = bcrypt.gensalt()
+    hashed = bcrypt.hashpw(password_bytes, salt)
+    return hashed.decode("utf-8")
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
@@ -49,9 +43,11 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
         
     Returns:
         True if the password matches, False otherwise
-        
-    Example:
-        is_valid = verify_password("mypassword123", stored_hash)
-        # Returns: True or False
     """
-    return pwd_context.verify(plain_password, hashed_password)
+    try:
+        return bcrypt.checkpw(
+            plain_password.encode("utf-8"),
+            hashed_password.encode("utf-8"),
+        )
+    except Exception:
+        return False

@@ -13,7 +13,7 @@ alembic==1.13.2           # Database migration tool
 
 # --- Authentication ---
 python-jose[cryptography]==3.3.0  # JWT token creation & verification
-passlib[bcrypt]==1.7.4             # Password hashing with bcrypt
+bcrypt==4.2.1                      # Password hashing
 python-multipart==0.0.9            # Form data parsing (needed for login)
 
 # --- Validation & Settings ---

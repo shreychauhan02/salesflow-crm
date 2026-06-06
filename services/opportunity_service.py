@@ -244,7 +244,7 @@ def process_approval(
     if opportunity.approval_status != ApprovalStatus.PENDING:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"This opportunity is already '{opportunity.approval_status.value}'. "
+            detail=f"This opportunity is already '{opportunity.approval_status}'. "
                    f"Only 'Pending' opportunities can be approved or rejected."
         )
 
@@ -269,6 +269,6 @@ def process_approval(
         "opportunity_id": opportunity.id,
         "opportunity_name": opportunity.opportunity_name,
         "deal_value": opportunity.deal_value,
-        "approval_status": opportunity.approval_status.value,
+        "approval_status": str(opportunity.approval_status),
         "reason": approval_data.reason,
     }
