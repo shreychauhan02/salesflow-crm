@@ -1,0 +1,24 @@
+# ============================================
+# SalesFlow CRM - Requirements
+# ============================================
+
+# --- Web Framework ---
+fastapi==0.115.0          # High-performance async web framework
+uvicorn[standard]==0.30.6 # ASGI server to run FastAPI
+
+# --- Database ---
+sqlalchemy==2.0.35        # ORM for database operations
+psycopg[binary]==3.2.4        # PostgreSQL adapter (modern replacement for psycopg2)
+alembic==1.13.2           # Database migration tool
+
+# --- Authentication ---
+python-jose[cryptography]==3.3.0  # JWT token creation & verification
+passlib[bcrypt]==1.7.4             # Password hashing with bcrypt
+python-multipart==0.0.9            # Form data parsing (needed for login)
+
+# --- Validation & Settings ---
+pydantic[email-validator]==2.9.2  # Data validation with email support
+pydantic-settings==2.5.2          # Load settings from .env file
+
+# --- Utilities ---
+python-dotenv==1.0.1      # Load environment variables from .env
