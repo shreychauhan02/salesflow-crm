@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <defs>
+    <linearGradient id="flowGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <!-- Flow Mark: ascending wave/pipeline -->
+  <g transform="translate(2, 4)">
+    <!-- Base curve -->
+    <path d="M4 32 C12 32, 16 20, 24 20 C32 20, 32 28, 40 28" stroke="url(#flowGrad)" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+    <!-- Upper flowing arrow -->
+    <path d="M20 8 L32 4 L28 16" stroke="url(#flowGrad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- Accent dot -->
+    <circle cx="36" cy="14" r="3" fill="#2563eb" opacity="0.35"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="56" y="34" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700" letter-spacing="-0.5">
+    <tspan fill="#2563eb">Sales</tspan><tspan fill="#1e293b">Flow</tspan>
+  </text>
+</svg>

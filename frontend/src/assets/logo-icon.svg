@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="flowGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="12" fill="#f0f4ff"/>
+  <!-- Flow Mark -->
+  <g transform="translate(6, 6)">
+    <!-- Base curve / pipeline path -->
+    <path d="M4 32 C12 32, 16 20, 24 20 C32 20, 32 28, 40 28" stroke="url(#flowGrad)" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <!-- Upper flowing arrow -->
+    <path d="M18 8 L32 4 L28 16" stroke="url(#flowGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- Accent dot -->
+    <circle cx="36" cy="14" r="3.5" fill="#2563eb" opacity="0.3"/>
+  </g>
+</svg>

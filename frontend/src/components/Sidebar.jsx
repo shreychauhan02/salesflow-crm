@@ -1,60 +1,54 @@
-// ============================================
-// SalesFlow CRM - Sidebar Component
-// ============================================
-// Left sidebar navigation with links to all pages.
-// Highlights the currently active page.
-//
-// INTERVIEW TIP:
-// "I used React Router's useLocation hook to
-// highlight the active navigation item, giving
-// users visual feedback about which page they're on."
-
 import { NavLink, useNavigate } from "react-router-dom";
+import { LayoutDashboard, Users, TrendingUp, BarChart3, LogOut } from "lucide-react";
+import logoIcon from "../assets/logo-icon.svg";
 
 const Sidebar = () => {
   const navigate = useNavigate();
 
-  // Handle logout
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     navigate("/login");
   };
 
-  // Navigation menu items
   const menuItems = [
-    { path: "/dashboard", label: "Dashboard", icon: "📊" },
-    { path: "/leads", label: "Leads", icon: "📋" },
-    { path: "/opportunities", label: "Opportunities", icon: "💰" },
-    { path: "/reports", label: "Reports", icon: "📈" },
+    { path: "/dashboard", label: "Dashboard", icon: <LayoutDashboard size={20} /> },
+    { path: "/leads", label: "Leads", icon: <Users size={20} /> },
+    { path: "/opportunities", label: "Opportunities", icon: <TrendingUp size={20} /> },
+    { path: "/reports", label: "Reports", icon: <BarChart3 size={20} /> },
   ];
 
   return (
     <aside className="w-64 bg-white border-r border-gray-100 min-h-screen flex flex-col">
-      {/* Logo / Brand */}
-      <div className="p-6 border-b border-gray-100">
-        <h1 className="text-xl font-bold text-gray-800">
-          <span className="text-blue-600">Sales</span>Flow
-        </h1>
-        <p className="text-xs text-gray-400 mt-1">CRM Dashboard</p>
+      {/* Brand Header */}
+      <div className="p-5 border-b border-gray-100">
+        <div className="flex items-center gap-3">
+          <img src={logoIcon} alt="SalesFlow" className="w-9 h-9" />
+          <div>
+            <h1 className="text-lg font-bold text-gray-900">
+              <span className="text-blue-600">Sales</span>Flow
+            </h1>
+            <p className="text-[10px] text-gray-400 -mt-0.5 tracking-wide uppercase">CRM Dashboard</p>
+          </div>
+        </div>
       </div>
 
-      {/* Navigation Links */}
-      <nav className="flex-1 p-4">
+      {/* Navigation */}
+      <nav className="flex-1 p-3 mt-2">
         <ul className="space-y-1">
           {menuItems.map((item) => (
             <li key={item.path}>
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  `flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${
                     isActive
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-800"
+                      ? "bg-blue-50 text-blue-600 shadow-sm shadow-blue-100"
+                      : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                   }`
                 }
               >
-                <span className="text-lg">{item.icon}</span>
+                <span className="flex-shrink-0">{item.icon}</span>
                 {item.label}
               </NavLink>
             </li>
@@ -62,13 +56,13 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      {/* Logout Button at Bottom */}
-      <div className="p-4 border-t border-gray-100">
+      {/* Logout */}
+      <div className="p-3 border-t border-gray-100">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-red-500 hover:bg-red-50 transition-colors w-full"
+          className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 transition-all duration-150 w-full"
         >
-          <span className="text-lg">🚪</span>
+          <LogOut size={20} />
           Logout
         </button>
       </div>

@@ -1,35 +1,28 @@
-/* ============================================
-   SalesFlow CRM - Global Styles
-   ============================================
-   Using Tailwind CSS for utility-first styling.
-   Custom styles are kept minimal for simplicity.
-*/
-
-/* Import Google Font - Inter for clean, modern look */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 @import "tailwindcss";
 
-/* --- Base Styles --- */
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f8fafc; /* Light gray background */
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background-color: #f8fafc;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- Status Badge Colors --- */
+/* Status Badge Colors */
 .badge-new { background-color: #dbeafe; color: #1d4ed8; }
 .badge-contacted { background-color: #fef3c7; color: #92400e; }
 .badge-qualified { background-color: #d1fae5; color: #065f46; }
 .badge-lost { background-color: #fee2e2; color: #991b1b; }
 .badge-converted { background-color: #ede9fe; color: #5b21b6; }
 
-/* --- Stage Badge Colors --- */
+/* Stage Badge Colors */
 .badge-prospecting { background-color: #e0e7ff; color: #3730a3; }
 .badge-proposal { background-color: #fef3c7; color: #92400e; }
 .badge-negotiation { background-color: #fce7f3; color: #9d174d; }
 .badge-won { background-color: #d1fae5; color: #065f46; }
 
-/* --- Approval Badge Colors --- */
+/* Approval Badge Colors */
 .badge-pending { background-color: #fef3c7; color: #92400e; }
 .badge-approved { background-color: #d1fae5; color: #065f46; }
 .badge-rejected { background-color: #fee2e2; color: #991b1b; }

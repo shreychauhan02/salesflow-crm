@@ -1,21 +1,10 @@
-// ============================================
-// SalesFlow CRM - Reports Page
-// ============================================
-// Shows summary stats and a simple revenue table.
-//
-// INTERVIEW TIP:
-// "The reports page calculates all metrics on the frontend
-// by processing the opportunities array. For a production app,
-// you'd create dedicated report endpoints on the backend
-// for better performance with large datasets."
-
 import { useState, useEffect } from "react";
+import { DollarSign, Trophy, TrendingDown, Percent } from "lucide-react";
 import StatCard from "../components/StatCard";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { getLeads } from "../services/leadService";
 import { getOpportunities } from "../services/opportunityService";
 
-// Format number as Indian currency
 const formatCurrency = (amount) => {
   return new Intl.NumberFormat("en-IN", {
     style: "currency",
@@ -29,7 +18,6 @@ const ReportsPage = () => {
   const [opportunities, setOpportunities] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch all report data from API
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -50,15 +38,9 @@ const ReportsPage = () => {
     fetchData();
   }, []);
 
-  // --- Calculate Report Metrics ---
-  // Total revenue = sum of deal values for "Won" deals
   const wonDeals = opportunities.filter((o) => o.stage === "Won");
   const totalRevenue = wonDeals.reduce((sum, o) => sum + o.deal_value, 0);
-
-  // Lost deals
   const lostDeals = opportunities.filter((o) => o.stage === "Lost");
-
-  // Conversion rate = (Converted leads / Total leads) * 100
   const convertedLeads = leads.filter((l) => l.status === "Converted").length;
   const conversionRate = leads.length > 0
     ? ((convertedLeads / leads.length) * 100).toFixed(1)
@@ -68,35 +50,35 @@ const ReportsPage = () => {
 
   return (
     <div className="space-y-8">
-      {/* --- Summary Cards --- */}
+      {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
           title="Total Revenue"
           value={formatCurrency(totalRevenue)}
-          icon="💰"
+          icon={<DollarSign size={24} className="text-green-600" />}
           color="bg-green-50"
         />
         <StatCard
           title="Won Deals"
           value={wonDeals.length}
-          icon="🏆"
+          icon={<Trophy size={24} className="text-blue-600" />}
           color="bg-blue-50"
         />
         <StatCard
           title="Lost Deals"
           value={lostDeals.length}
-          icon="📉"
+          icon={<TrendingDown size={24} className="text-red-600" />}
           color="bg-red-50"
         />
         <StatCard
           title="Conversion Rate"
           value={`${conversionRate}%`}
-          icon="📊"
+          icon={<Percent size={24} className="text-purple-600" />}
           color="bg-purple-50"
         />
       </div>
 
-      {/* --- Revenue Table --- */}
+      {/* Revenue Table */}
       <div className="bg-white rounded-xl border border-gray-100 p-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">Revenue Details</h3>
 
@@ -135,13 +117,14 @@ const ReportsPage = () => {
           </div>
         ) : (
           <div className="text-center py-10 text-gray-400">
-            <p className="text-4xl mb-2">📊</p>
-            <p>No won deals yet. Convert and close deals to see revenue data.</p>
+            <DollarSign size={40} className="mx-auto mb-3 text-gray-300" />
+            <p className="text-sm font-medium text-gray-500">No won deals yet</p>
+            <p className="text-xs text-gray-400 mt-1">Convert and close deals to see revenue data</p>
           </div>
         )}
       </div>
 
-      {/* --- All Opportunities Summary --- */}
+      {/* Pipeline Summary */}
       <div className="bg-white rounded-xl border border-gray-100 p-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">Pipeline Summary</h3>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -153,7 +136,7 @@ const ReportsPage = () => {
             return (
               <div key={stage} className="text-center p-4 bg-gray-50 rounded-lg">
                 <p className="text-sm text-gray-500">{stage}</p>
-                <p className="text-2xl font-bold text-gray-800">{count}</p>
+                <p className="text-2xl font-bold text-gray-800 mt-1">{count}</p>
                 <p className="text-xs text-gray-400 mt-1">{formatCurrency(value)}</p>
               </div>
             );
